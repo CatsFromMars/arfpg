@@ -36,6 +36,11 @@ public class PetButton : MonoBehaviour {
   public float fillVal;
 
   /// <summary>
+  /// Fill Decay speed
+  /// </summary>
+  public float fillDecaySpeed = 100;
+
+  /// <summary>
   /// Tracker for current fill speed
   /// </summary>
   public float currentFillSpeed;
@@ -106,7 +111,8 @@ public class PetButton : MonoBehaviour {
     {
       // Reset defaults if left button up
       currentFillSpeed = fillSpeed;
-      fillVal = fillStartVal;
+      fillVal = Mathf.Clamp(fillVal - fillDecaySpeed * Time.deltaTime, 0, 1);
+      bar.Value += fillVal;
       buttonState = false;
     }
     else if (!Input.GetMouseButton(0) && !Input.GetMouseButton(1) || !mouseIsOver)

@@ -505,10 +505,11 @@ MonoBehaviour:
   buttonUp: {fileID: 506677703}
   buttonDown: {fileID: 765423349}
   bar: {fileID: 1022613679}
-  fillStartVal: 0.001
-  fillSpeed: 0
-  fillAccel: 0.001
+  fillStartVal: 0.1
+  fillSpeed: -100
+  fillAccel: 0
   fillVal: 0
+  fillDecaySpeed: -100
   currentFillSpeed: 0
   buttonState: 0
   mouseIsOver: 0
