@@ -468,9 +468,12 @@ MonoBehaviour:
   rangeMin: {fileID: 965743330}
   rangeMax: {fileID: 2111187250}
   targetRangeMin: 0.7
-  targetRangeMax: 0.9
+  targetRangeMax: 0.8
   barDecay: 0.2
   startVal: 0
+  timeToComplete: 1
+  currentTimeInBounds: 0
+  isActive: 0
 --- !u!1 &1061491440
 GameObject:
   m_ObjectHideFlags: 0
@@ -502,13 +505,14 @@ MonoBehaviour:
   buttonUp: {fileID: 506677703}
   buttonDown: {fileID: 765423349}
   bar: {fileID: 1022613679}
-  fillStartVal: 0.05
-  fillSpeed: -100
-  fillAccel: 0
+  fillStartVal: 0.001
+  fillSpeed: 0
+  fillAccel: 0.001
   fillVal: 0
   currentFillSpeed: 0
   buttonState: 0
   mouseIsOver: 0
+  inputMode: 2
 --- !u!4 &1061491442
 Transform:
   m_ObjectHideFlags: 0
