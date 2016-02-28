@@ -40,8 +40,8 @@ public class TextBox : MonoBehaviour {
   /// </summary>
   int idx;
 
-  // Use this for initialization
-  void Start () {
+  void Awake()
+  {
     box = transform.FindChild("box");
     text = transform.Find("text").GetComponent<TextMesh>();
 
@@ -54,7 +54,10 @@ public class TextBox : MonoBehaviour {
 
     setText(idx);
     idx = 0;
+  }
 
+  // Use this for initialization
+  void Start () {
     if (autoplay)
       startScript();
 	}

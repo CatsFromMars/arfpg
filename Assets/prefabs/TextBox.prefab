@@ -154,11 +154,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 116590}
-  m_Text: '[THIS TEXT WILL NOT ACTUALLY BE DISPLAYED]
-
-    [THIS IS A PLACEHOLDER]
-
-    [GETS OVERRIDDEN BY SCRIPT]'
+  m_Text: 
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -199,11 +195,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 0}
       propertyPath: m_Text
-      value: '[THIS TEXT WILL NOT ACTUALLY BE DISPLAYED]
-
-        [THIS IS A PLACEHOLDER]
-
-        [GETS OVERRIDDEN BY SCRIPT]'
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

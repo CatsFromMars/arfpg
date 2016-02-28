@@ -2,10 +2,16 @@
 using UnityEngine.UI;
 using System.Collections;
 
+public interface GameWinHandler
+{
+  void winGame();
+}
+
 public class PetBar : MonoBehaviour {
   public Image fill;
   public Image rangeMin;
   public Image rangeMax;
+  public GameObject gameWinHandler;
 
   public float targetRangeMin = 0.7f;
   public float targetRangeMax = 0.8f;
@@ -107,6 +113,7 @@ public class PetBar : MonoBehaviour {
   public void gameWin()
   {
     isActive = false;
-    Debug.Log("A WINNER IS YOU");
+    GameWinHandler g = gameWinHandler.GetComponent<GameWinHandler>();
+    g.winGame();
   }
 }
