@@ -25,20 +25,53 @@ public class PetBar : MonoBehaviour {
   /// </summary>
   float width;
 
+  /// <summary>
+  /// How long you need to stay in the bounds to win
+  /// </summary>
+  public float timeToComplete = 1f;
+
+  /// <summary>
+  /// Tracker for how long the bar's been within bounds
+  /// </summary>
+  public float currentTimeInBounds;
+
+  /// <summary>
+  /// If active, bar fills and depletes
+  /// </summary>
+  public bool isActive;
+
 	// Use this for initialization
 	void Start () {
     Value = startVal;
+    isActive = true;
   }
 	
 	// Update is called once per frame
 	void Update () {
-    // Update position of thing if changed
-    width = fill.rectTransform.rect.width;
-    rangeMin.rectTransform.anchoredPosition = new Vector2(getAbsolutePosition(targetRangeMin), 0);
-    rangeMax.rectTransform.anchoredPosition = new Vector2(getAbsolutePosition(targetRangeMax), 0);
+    if (isActive)
+    {
+      // Update position of thing if changed
+      width = fill.rectTransform.rect.width;
+      rangeMin.rectTransform.anchoredPosition = new Vector2(getAbsolutePosition(targetRangeMin), 0);
+      rangeMax.rectTransform.anchoredPosition = new Vector2(getAbsolutePosition(targetRangeMax), 0);
 
-    // Decay bar value
-    Value = Mathf.Clamp(Value - barDecay * Time.deltaTime, 0, 1);
+      if (targetRangeMin < Value && Value < targetRangeMax)
+      {
+        currentTimeInBounds += Time.deltaTime;
+      }
+      else
+      {
+        currentTimeInBounds = 0;
+      }
+
+      if (currentTimeInBounds > timeToComplete)
+      {
+        gameWin();
+      }
+
+      // Decay bar value
+      Value = Mathf.Clamp(Value - barDecay * Time.deltaTime, 0, 1);
+    }
   }
 
   float getAbsolutePosition(float relPos)
@@ -64,10 +97,16 @@ public class PetBar : MonoBehaviour {
     }
     set
     {
-      if (fill != null)
+      if (fill != null && isActive)
       {
         fill.fillAmount = value;
       }
     }
+  }
+
+  public void gameWin()
+  {
+    isActive = false;
+    Debug.Log("A WINNER IS YOU");
   }
 }

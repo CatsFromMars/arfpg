@@ -1,6 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
+public enum AcceptedInput
+{
+  LEFT,
+  RIGHT,
+  BOTH,
+  ALTERNATE
+}
+
 public class PetButton : MonoBehaviour {
   public SpriteRenderer buttonUp;
   public SpriteRenderer buttonDown;
@@ -27,6 +36,11 @@ public class PetButton : MonoBehaviour {
   public float fillVal;
 
   /// <summary>
+  /// Fill Decay speed
+  /// </summary>
+  public float fillDecaySpeed = 100;
+
+  /// <summary>
   /// Tracker for current fill speed
   /// </summary>
   public float currentFillSpeed;
@@ -41,24 +55,67 @@ public class PetButton : MonoBehaviour {
   /// </summary>
   public bool mouseIsOver;
 
+  /// <summary>
+  /// Indicates how the button should react to different mouse buttons
+  /// </summary>
+  public AcceptedInput inputMode = AcceptedInput.LEFT;
+
+  bool acceptsLeft;
+  bool acceptsRight;
+  bool alternates;
+  bool nextClickIsLeft;
+
 	// Use this for initialization
 	void Start () {
     fillVal = fillStartVal;
     currentFillSpeed = fillSpeed;
     buttonState = false;
+
+    changeInputMode(inputMode);
 	}
 	
 	// Update is called once per frame
 	void Update () {
     // update button state
-    if (Input.GetMouseButton(0) && mouseIsOver)
+    if (acceptsLeft && Input.GetMouseButton(0) && mouseIsOver)
     {
-      bar.Value += fillVal;
-      currentFillSpeed += fillAccel * Time.deltaTime;
-      fillVal = Mathf.Clamp(fillVal + currentFillSpeed * Time.deltaTime, 0, 1);
-      buttonState = true;
+      if (nextClickIsLeft || (acceptsLeft && acceptsRight && !alternates))
+      {
+        bar.Value += fillVal;
+        currentFillSpeed += fillAccel * Time.deltaTime;
+        fillVal = Mathf.Clamp(fillVal + currentFillSpeed * Time.deltaTime, 0, 1);
+        buttonState = true;
+        if (alternates)
+        {
+          nextClickIsLeft = false;
+        }
+      }
     }
-    else if (!Input.GetMouseButton(0) || !mouseIsOver)
+
+    if (acceptsRight && Input.GetMouseButton(1) && mouseIsOver)
+    {
+      if (!nextClickIsLeft || (acceptsLeft && acceptsRight && !alternates))
+      {
+        bar.Value += fillVal;
+        currentFillSpeed += fillAccel * Time.deltaTime;
+        fillVal = Mathf.Clamp(fillVal + currentFillSpeed * Time.deltaTime, 0, 1);
+        buttonState = true;
+        if (alternates)
+        {
+          nextClickIsLeft = true;
+        }
+      }
+    }
+
+    if (!(acceptsLeft && acceptsRight) && ((acceptsLeft && !Input.GetMouseButton(0)) || ((acceptsRight && !Input.GetMouseButton(1)) || !mouseIsOver)))
+    {
+      // Reset defaults if left button up
+      currentFillSpeed = fillSpeed;
+      fillVal = Mathf.Clamp(fillVal - fillDecaySpeed * Time.deltaTime, 0, 1);
+      bar.Value += fillVal;
+      buttonState = false;
+    }
+    else if (!Input.GetMouseButton(0) && !Input.GetMouseButton(1) || !mouseIsOver)
     {
       // Reset defaults if left button up
       currentFillSpeed = fillSpeed;
@@ -86,5 +143,36 @@ public class PetButton : MonoBehaviour {
   void OnMouseExit()
   {
     mouseIsOver = false;
+  }
+
+  public void changeInputMode(AcceptedInput i)
+  {
+    switch (i)
+    {
+      case AcceptedInput.LEFT:
+        acceptsLeft = true;
+        acceptsRight = false;
+        nextClickIsLeft = true;
+        alternates = false;
+        break;
+      case AcceptedInput.RIGHT:
+        acceptsLeft = false;
+        acceptsRight = true;
+        nextClickIsLeft = false;
+        alternates = false;
+        break;
+      case AcceptedInput.BOTH:
+        acceptsLeft = true;
+        acceptsRight = true;
+        alternates = false;
+        nextClickIsLeft = true;
+        break;
+      case AcceptedInput.ALTERNATE:
+        acceptsLeft = true;
+        acceptsRight = true;
+        alternates = true;
+        nextClickIsLeft = true;
+        break;
+    }
   }
 }

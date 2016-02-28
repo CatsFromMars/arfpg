@@ -444,7 +444,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1022613677}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -347.05, y: -178, z: 0}
+  m_LocalPosition: {x: -347.05, y: -178, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1881206833}
@@ -468,9 +468,12 @@ MonoBehaviour:
   rangeMin: {fileID: 965743330}
   rangeMax: {fileID: 2111187250}
   targetRangeMin: 0.7
-  targetRangeMax: 0.9
+  targetRangeMax: 0.8
   barDecay: 0.2
   startVal: 0
+  timeToComplete: 1
+  currentTimeInBounds: 0
+  isActive: 0
 --- !u!1 &1061491440
 GameObject:
   m_ObjectHideFlags: 0
@@ -502,13 +505,15 @@ MonoBehaviour:
   buttonUp: {fileID: 506677703}
   buttonDown: {fileID: 765423349}
   bar: {fileID: 1022613679}
-  fillStartVal: 0.05
+  fillStartVal: 0.1
   fillSpeed: -100
   fillAccel: 0
   fillVal: 0
+  fillDecaySpeed: -100
   currentFillSpeed: 0
   buttonState: 0
   mouseIsOver: 0
+  inputMode: 2
 --- !u!4 &1061491442
 Transform:
   m_ObjectHideFlags: 0
@@ -733,7 +738,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2013246215}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071067}
-  m_LocalPosition: {x: 0, y: -0.2, z: 10}
+  m_LocalPosition: {x: 0, y: -0.2, z: 100}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -868,9 +873,9 @@ Canvas:
   m_GameObject: {fileID: 2124502814}
   m_Enabled: 1
   serializedVersion: 2
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
+  m_RenderMode: 1
+  m_Camera: {fileID: 340373715}
+  m_PlaneDistance: 1
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
