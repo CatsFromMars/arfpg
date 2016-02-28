@@ -154,7 +154,11 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 116590}
-  m_Text: Hello World
+  m_Text: '[THIS TEXT WILL NOT ACTUALLY BE DISPLAYED]
+
+    [THIS IS A PLACEHOLDER]
+
+    [GETS OVERRIDDEN BY SCRIPT]'
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -182,15 +186,25 @@ MonoBehaviour:
   displayText:
   - Hello World\nI'm a text box
   - And I'm line number 2!
+  timings: 
   skippable: 1
   deleteOnFinish: 1
+  autoplay: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_Text
+      value: '[THIS TEXT WILL NOT ACTUALLY BE DISPLAYED]
+
+        [THIS IS A PLACEHOLDER]
+
+        [GETS OVERRIDDEN BY SCRIPT]'
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 127476}
