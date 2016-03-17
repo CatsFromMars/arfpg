@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/scenes/Blank.unity
+- path: Assets/scenes/chalk_dog.unity
   isLoaded: 1
   isActive: 1

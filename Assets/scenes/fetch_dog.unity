@@ -478,7 +478,7 @@ MonoBehaviour:
   startVal: 0
   timeToComplete: 5
   currentTimeInBounds: 0
-  isActive: 1
+  isActive: 0
 --- !u!1 &1061491440
 GameObject:
   m_ObjectHideFlags: 0
@@ -526,7 +526,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1061491440}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.026, y: 0.4, z: 0}
+  m_LocalPosition: {x: -0.019, y: 0.068, z: 0}
   m_LocalScale: {x: 0.107877076, y: 0.10787706, z: 0.21575412}
   m_Children:
   - {fileID: 765423350}
@@ -554,11 +554,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 403268, guid: 1ad810f74d6bcb346bf9d3ffcc78f0a4, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0.59
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 403268, guid: 1ad810f74d6bcb346bf9d3ffcc78f0a4, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.391
+      value: 0.609
       objectReference: {fileID: 0}
     - target: {fileID: 403268, guid: 1ad810f74d6bcb346bf9d3ffcc78f0a4, type: 2}
       propertyPath: m_LocalPosition.z
@@ -586,15 +586,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 403268, guid: 1ad810f74d6bcb346bf9d3ffcc78f0a4, type: 2}
       propertyPath: m_LocalScale.x
-      value: 0.92107075
+      value: 0.61632127
       objectReference: {fileID: 0}
     - target: {fileID: 403268, guid: 1ad810f74d6bcb346bf9d3ffcc78f0a4, type: 2}
       propertyPath: m_LocalScale.y
-      value: 0.9210708
+      value: 0.61632127
       objectReference: {fileID: 0}
     - target: {fileID: 403268, guid: 1ad810f74d6bcb346bf9d3ffcc78f0a4, type: 2}
       propertyPath: m_LocalScale.z
-      value: 0.9210708
+      value: 0.61632127
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1ad810f74d6bcb346bf9d3ffcc78f0a4, type: 2}
@@ -635,7 +635,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1445348991}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8425a6204f1bead4aac84258a61f2c41, type: 3}
+  m_Script: {fileID: 11500000, guid: be538d1e031f7f14b95f9da82cf0344b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bar: {fileID: 1022613677}
