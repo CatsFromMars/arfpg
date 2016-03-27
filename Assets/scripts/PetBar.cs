@@ -49,7 +49,9 @@ public class PetBar : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
     Value = startVal;
-    isActive = true;
+    width = fill.rectTransform.rect.width;
+    rangeMin.rectTransform.anchoredPosition = new Vector2(getAbsolutePosition(targetRangeMin), 0);
+    rangeMax.rectTransform.anchoredPosition = new Vector2(getAbsolutePosition(targetRangeMax), 0);
   }
 	
 	// Update is called once per frame

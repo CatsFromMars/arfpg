@@ -60,6 +60,11 @@ public class PetButton : MonoBehaviour {
   /// </summary>
   public AcceptedInput inputMode = AcceptedInput.LEFT;
 
+  /// <summary>
+  /// Tracks amount of time the button is down.
+  /// </summary>
+  public float timeClicked = 0;
+
   bool acceptsLeft;
   bool acceptsRight;
   bool alternates;
@@ -79,6 +84,7 @@ public class PetButton : MonoBehaviour {
     // update button state
     if (acceptsLeft && Input.GetMouseButton(0) && mouseIsOver)
     {
+      timeClicked += Time.deltaTime;
       if (nextClickIsLeft || (acceptsLeft && acceptsRight && !alternates))
       {
         bar.Value += fillVal;
@@ -94,6 +100,7 @@ public class PetButton : MonoBehaviour {
 
     if (acceptsRight && Input.GetMouseButton(1) && mouseIsOver)
     {
+      timeClicked += Time.deltaTime;
       if (!nextClickIsLeft || (acceptsLeft && acceptsRight && !alternates))
       {
         bar.Value += fillVal;

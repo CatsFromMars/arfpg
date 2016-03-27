@@ -63,6 +63,8 @@ public class DadDogSetup : MonoBehaviour, GameWinHandler {
 		yield return new WaitForSeconds(4);
 		textComponent.setText("PET ALL DOGS!");
 		yield return new WaitForSeconds(2);
-		Debug.Log("end game things here woo");
+		Debug.Log("Game Ended, loading");
+		GameObject loader = GameObject.Find("loader");
+		loader.GetComponent<Loader>().load("chalk_dog");
 	}
 }
