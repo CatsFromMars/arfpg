@@ -51,6 +51,7 @@ public class DadDogSetup : MonoBehaviour, GameWinHandler {
 		yield return new WaitForSeconds(2);
 		textComponent.setText("To pet a dog, you must click the PET buton in rapid succession.");
 		gameGUI.SetActive (true);
+    pbar.isActive = true;
 	}
 
 	IEnumerator endGame()
