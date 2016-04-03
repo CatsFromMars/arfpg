@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/scenes/fetch_dog.unity
+- path: Assets/scenes/boss_dog.unity
   isLoaded: 1
   isActive: 1
