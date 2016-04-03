@@ -516,7 +516,7 @@ MonoBehaviour:
   fillSpeed: -10
   fillAccel: 0
   fillVal: 0
-  fillDecaySpeed: -100
+  fillDecaySpeed: 100
   currentFillSpeed: 0
   buttonState: 0
   mouseIsOver: 0

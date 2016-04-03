@@ -63,7 +63,7 @@ public class PetBar : MonoBehaviour {
       rangeMin.rectTransform.anchoredPosition = new Vector2(getAbsolutePosition(targetRangeMin), 0);
       rangeMax.rectTransform.anchoredPosition = new Vector2(getAbsolutePosition(targetRangeMax), 0);
 
-      if (targetRangeMin < Value && Value < targetRangeMax)
+      if (targetRangeMin < Value && Value <= targetRangeMax)
       {
         currentTimeInBounds += Time.deltaTime;
       }
@@ -107,7 +107,7 @@ public class PetBar : MonoBehaviour {
     {
       if (fill != null && isActive)
       {
-        fill.fillAmount = value;
+        fill.fillAmount = Mathf.Clamp(value, 0, 1);
       }
     }
   }

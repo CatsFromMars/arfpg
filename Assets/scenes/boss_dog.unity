@@ -329,16 +329,18 @@ MonoBehaviour:
   buttonUp: {fileID: 1376333691}
   buttonDown: {fileID: 1170732488}
   bar: {fileID: 576987412}
-  fillStartVal: 0.01
+  fillStartVal: 0.1
   fillSpeed: -10
   fillAccel: 0
   fillVal: 0
-  fillDecaySpeed: -100
+  fillDecaySpeed: 10
   currentFillSpeed: 0
   buttonState: 0
   mouseIsOver: 0
   inputMode: 2
   timeClicked: 0
+  autoClick: 0
+  autoClickInterval: 0.25
 --- !u!4 &147952635
 Transform:
   m_ObjectHideFlags: 0
@@ -715,9 +717,9 @@ MonoBehaviour:
   rangeMin: {fileID: 721068716}
   rangeMax: {fileID: 2035286830}
   gameWinHandler: {fileID: 1445348991}
-  targetRangeMin: 0.4
-  targetRangeMax: 0.6
-  barDecay: 0.2
+  targetRangeMin: 0.9
+  targetRangeMax: 1
+  barDecay: 1
   startVal: 0
   timeToComplete: 5
   currentTimeInBounds: 0
@@ -961,9 +963,9 @@ MonoBehaviour:
   rangeMin: {fileID: 965743330}
   rangeMax: {fileID: 2111187250}
   gameWinHandler: {fileID: 1445348991}
-  targetRangeMin: 0.4
-  targetRangeMax: 0.6
-  barDecay: 0.2
+  targetRangeMin: 0.9
+  targetRangeMax: 1
+  barDecay: 1
   startVal: 0
   timeToComplete: 5
   currentTimeInBounds: 0
@@ -1003,12 +1005,14 @@ MonoBehaviour:
   fillSpeed: -10
   fillAccel: 0
   fillVal: 0
-  fillDecaySpeed: -100
+  fillDecaySpeed: 10
   currentFillSpeed: 0
   buttonState: 0
   mouseIsOver: 0
   inputMode: 2
   timeClicked: 0
+  autoClick: 0
+  autoClickInterval: 0.25
 --- !u!4 &1061491442
 Transform:
   m_ObjectHideFlags: 0
@@ -1244,9 +1248,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6f988c6381299e4580ecaa23a622b4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bar: {fileID: 1022613677}
   dog: {fileID: 458143415}
   textbox: {fileID: 1838586616}
+  button1: {fileID: 1061491440}
+  button2: {fileID: 1577292174}
+  button3: {fileID: 147952632}
+  bar1: {fileID: 1022613677}
+  bar2: {fileID: 2079729211}
+  bar3: {fileID: 576987410}
 --- !u!1 &1514772453
 GameObject:
   m_ObjectHideFlags: 0
@@ -1486,12 +1495,14 @@ MonoBehaviour:
   fillSpeed: -10
   fillAccel: 0
   fillVal: 0
-  fillDecaySpeed: -100
+  fillDecaySpeed: 10
   currentFillSpeed: 0
   buttonState: 0
   mouseIsOver: 0
   inputMode: 2
   timeClicked: 0
+  autoClick: 0
+  autoClickInterval: 0.25
 --- !u!4 &1577292177
 Transform:
   m_ObjectHideFlags: 0
@@ -1929,9 +1940,9 @@ MonoBehaviour:
   rangeMin: {fileID: 2139039005}
   rangeMax: {fileID: 1567897608}
   gameWinHandler: {fileID: 1445348991}
-  targetRangeMin: 0.4
-  targetRangeMax: 0.6
-  barDecay: 0.2
+  targetRangeMin: 0.9
+  targetRangeMax: 1
+  barDecay: 1
   startVal: 0
   timeToComplete: 5
   currentTimeInBounds: 0
