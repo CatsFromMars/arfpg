@@ -27,7 +27,7 @@ public class Throwable : MonoBehaviour {
 
   private Vector3 home;
   private bool offScreen;
-  private bool returning;
+  public bool returning;
 
   public float returnSpeed;
 
@@ -111,12 +111,13 @@ public class Throwable : MonoBehaviour {
 
   void OnBecameInvisible()
   {
+	returning = true;
     StartCoroutine("returnHome");
   }
 
   IEnumerator returnHome()
   {
-    yield return new WaitForSeconds(1f);
+    yield return new WaitForSeconds(0.6f);
 
     returning = true;
     Vector3 currentLoc = this.transform.position;

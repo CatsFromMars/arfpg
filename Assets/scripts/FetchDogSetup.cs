@@ -8,6 +8,7 @@ public class FetchDogSetup : MonoBehaviour, GameWinHandler {
   public GameObject textbox;
   public GameObject button;
 
+  Animator animator;
   TextBox textComponent;
   PetBar pbar;
   PetButton pbutton;
@@ -20,11 +21,18 @@ public class FetchDogSetup : MonoBehaviour, GameWinHandler {
     pbar = bar.GetComponent<PetBar>();
     pbutton = button.GetComponent<PetButton>();
     buttonThrower = button.GetComponent<Throwable>();
+	animator = dog.GetComponent<Animator> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-    if (!pbar.isActive && pbutton.timeClicked >= 3)
+
+	if (buttonThrower.returning) {
+		animator.SetInteger (Animator.StringToHash("Pet"), 1);
+	}
+	else animator.SetInteger (Animator.StringToHash("Pet"), 0);
+    
+	if (!pbar.isActive && pbutton.timeClicked >= 3)
     {
       textComponent.setText("No pets! Play fetch instead!");
     }
