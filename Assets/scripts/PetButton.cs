@@ -38,7 +38,7 @@ public class PetButton : MonoBehaviour {
   /// <summary>
   /// Fill Decay speed
   /// </summary>
-  public float fillDecaySpeed = 100;
+  public float fillDecaySpeed = -100;
 
   /// <summary>
   /// Tracker for current fill speed
@@ -70,64 +70,109 @@ public class PetButton : MonoBehaviour {
   bool alternates;
   bool nextClickIsLeft;
 
+  /// <summary>
+  /// Automatically triggers a click every other frame if active
+  /// </summary>
+  public bool autoClick;
+  public float autoClickInterval;
+  float elapsedAutoTime;
+
 	// Use this for initialization
 	void Start () {
     fillVal = fillStartVal;
     currentFillSpeed = fillSpeed;
     buttonState = false;
+    elapsedAutoTime = 0;
 
     changeInputMode(inputMode);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-    // update button state
-    if (acceptsLeft && Input.GetMouseButton(0) && mouseIsOver)
+    if (autoClick)
     {
-      timeClicked += Time.deltaTime;
-      if (nextClickIsLeft || (acceptsLeft && acceptsRight && !alternates))
+      elapsedAutoTime += Time.deltaTime;
+
+      if (autoClick && elapsedAutoTime > autoClickInterval)
       {
-        bar.Value += fillVal;
-        currentFillSpeed += fillAccel * Time.deltaTime;
-        fillVal = Mathf.Clamp(fillVal + currentFillSpeed * Time.deltaTime, 0, 1);
+        bar.Value += fillStartVal;
         buttonState = true;
-        if (alternates)
-        {
-          nextClickIsLeft = false;
-        }
+        elapsedAutoTime = 0;
+      }
+      else if (elapsedAutoTime > autoClickInterval * 0.5)
+      {
+        buttonState = false;
       }
     }
-
-    if (acceptsRight && Input.GetMouseButton(1) && mouseIsOver)
-    {
-      timeClicked += Time.deltaTime;
-      if (!nextClickIsLeft || (acceptsLeft && acceptsRight && !alternates))
+    else {
+      // conditions for button down start
+      // mouse button hit down inside the button or button is being held down
+      if (buttonState || (acceptsLeft && mouseIsOver && Input.GetMouseButtonDown(0)))
       {
-        bar.Value += fillVal;
-        currentFillSpeed += fillAccel * Time.deltaTime;
-        fillVal = Mathf.Clamp(fillVal + currentFillSpeed * Time.deltaTime, 0, 1);
-        buttonState = true;
-        if (alternates)
+        // Add initial value to first click and only first click
+        if (Input.GetMouseButtonDown(0))
         {
-          nextClickIsLeft = true;
+          fillVal = fillStartVal;
+        }
+
+        timeClicked += Time.deltaTime;
+        buttonState = true;
+        if (nextClickIsLeft || (acceptsLeft && acceptsRight && !alternates))
+        {
+          bar.Value += fillVal;
+          currentFillSpeed += fillAccel * Time.deltaTime;
+          fillVal = Mathf.Clamp(fillVal + currentFillSpeed * Time.deltaTime, 0, 1);
+          if (alternates)
+          {
+            nextClickIsLeft = false;
+          }
         }
       }
-    }
+      else if (buttonState || (acceptsRight && mouseIsOver && Input.GetMouseButtonDown(1)))
+      {
+        // Add initial value to first click and only first click
+        if (Input.GetMouseButtonDown(1))
+        {
+          fillVal = fillStartVal;
+        }
 
-    if (!(acceptsLeft && acceptsRight) && ((acceptsLeft && !Input.GetMouseButton(0)) || ((acceptsRight && !Input.GetMouseButton(1)) || !mouseIsOver)))
-    {
-      // Reset defaults if left button up
-      currentFillSpeed = fillSpeed;
-      fillVal = Mathf.Clamp(fillVal - fillDecaySpeed * Time.deltaTime, 0, 1);
-      bar.Value += fillVal;
-      buttonState = false;
-    }
-    else if (!Input.GetMouseButton(0) && !Input.GetMouseButton(1) || !mouseIsOver)
-    {
-      // Reset defaults if left button up
-      currentFillSpeed = fillSpeed;
-      fillVal = fillStartVal;
-      buttonState = false;
+        timeClicked += Time.deltaTime;
+        buttonState = true;
+        if (!nextClickIsLeft || (acceptsLeft && acceptsRight && !alternates))
+        {
+          bar.Value += fillVal;
+          currentFillSpeed += fillAccel * Time.deltaTime;
+          fillVal = Mathf.Clamp(fillVal + currentFillSpeed * Time.deltaTime, 0, 1);
+          if (alternates)
+          {
+            nextClickIsLeft = true;
+          }
+        }
+      }
+
+      //if (acceptsRight && Input.GetMouseButton(1) && mouseIsOver)
+      //{
+      //  timeClicked += Time.deltaTime;
+      //  if (!nextClickIsLeft || (acceptsLeft && acceptsRight && !alternates))
+      //  {
+      //    bar.Value += fillVal;
+      //    currentFillSpeed += fillAccel * Time.deltaTime;
+      //    fillVal = Mathf.Clamp(fillVal + currentFillSpeed * Time.deltaTime, 0, 1);
+      //    buttonState = true;
+      //    if (alternates)
+      //    {
+      //      nextClickIsLeft = true;
+      //   }
+      //  }
+      //}
+
+      if (!mouseIsOver || (acceptsLeft && Input.GetMouseButtonUp(0)) || (acceptsRight && Input.GetMouseButtonUp(1)))
+      {
+        buttonState = false;
+        currentFillSpeed = fillSpeed;
+        fillVal = Mathf.Clamp(fillVal - fillDecaySpeed * Time.deltaTime, 0, 1);
+        bar.Value += fillVal;
+      }
     }
 
     if (buttonState)
