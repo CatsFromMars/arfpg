@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/scenes/dad_dog.unity
+  - enabled: 1
     path: Assets/scenes/chalk_dog.unity
   - enabled: 1
     path: Assets/scenes/fetch_dog.unity
+  - enabled: 1
+    path: Assets/scenes/boss_dog.unity
+  - enabled: 1
+    path: Assets/scenes/end.unity

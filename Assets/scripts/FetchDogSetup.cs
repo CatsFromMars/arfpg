@@ -58,5 +58,7 @@ public class FetchDogSetup : MonoBehaviour, GameWinHandler {
     yield return new WaitForSeconds(2);
 
     Debug.Log("end game things here woo");
+	GameObject loader = GameObject.Find("loader");
+	loader.GetComponent<Loader>().load("boss_dog");
   }
 }

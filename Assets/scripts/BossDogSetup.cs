@@ -56,6 +56,7 @@ public class BossDogSetup : MonoBehaviour, GameWinHandler {
     textComponent.setText("*Fetch dog comes to help*");
     yield return new WaitForSeconds(3);
 
+	animator.SetInteger (Animator.StringToHash("Pet"), 1);
     textComponent.setText("You sense Boss Dog starting to relax...");
     for (int i = 0; i < 9; i++)
     {
@@ -76,9 +77,30 @@ public class BossDogSetup : MonoBehaviour, GameWinHandler {
 
   IEnumerator endGame()
   {
+	button1.GetComponent<PetButton>().autoClick = false;
+	button3.GetComponent<PetButton>().autoClick = false;
+	yield return StartCoroutine(finalSpeech());
     yield return new WaitForSeconds(2);
 
     Debug.Log("Game Ended, loading");
+	GameObject loader = GameObject.Find("loader");
+	loader.GetComponent<Loader>().load("end");
+  }
+
+  IEnumerator finalSpeech() 
+  {
+	GameObject music = GameObject.Find("Music");
+	music.GetComponent<AudioSource> ().Stop ();
+	animator.SetInteger (Animator.StringToHash("Pet"), 2);
+	textComponent.setText("IMPOSSIBLE...");
+	yield return new WaitForSeconds(3);
+    textComponent.setText("N-NO HUMAN HAS EVER BEEN ABLE TO PET ME BEFORE");
+	yield return new WaitForSeconds(2);
+	textComponent.setText("BECAUSE OF MY THREE HEADS");
+	yield return new WaitForSeconds(2);
+	textComponent.setText("...");
+	yield return new WaitForSeconds(2);
+	textComponent.setText("THANK YOU.");
   }
 
   private float getTotalTimeClicked()
