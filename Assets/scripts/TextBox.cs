@@ -40,6 +40,11 @@ public class TextBox : MonoBehaviour {
   /// </summary>
   int idx;
 
+  /// <summary>
+  /// Set to true when the text box has run through all texts in the list
+  /// </summary>
+  public bool done;
+
   void Awake()
   {
     box = transform.FindChild("box");
@@ -54,6 +59,7 @@ public class TextBox : MonoBehaviour {
 
     setText(idx);
     idx = 0;
+    done = false;
   }
 
   // Use this for initialization
@@ -70,6 +76,7 @@ public class TextBox : MonoBehaviour {
       if (idx == displayText.Count)
       {
         setText("");
+        done = true;
         if (deleteOnFinish)
         {
           Destroy(this.gameObject);
@@ -125,5 +132,11 @@ public class TextBox : MonoBehaviour {
     {
       text.text = displayText[i];
     }
+  }
+
+  public void reset()
+  {
+    idx = 0;
+    done = false;
   }
 }

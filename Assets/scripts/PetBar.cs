@@ -46,6 +46,21 @@ public class PetBar : MonoBehaviour {
   /// </summary>
   public bool isActive;
 
+  /// <summary>
+  /// time penalty for not staying within bounds per second
+  /// </summary>
+  public float timeDecay = 1;
+
+  /// <summary>
+  /// Pet bar not complete color
+  /// </summary>
+  public Color badColor;
+
+  /// <summary>
+  /// Pet bar completed color
+  /// </summary>
+  public Color goodColor;
+
 	// Use this for initialization
 	void Start () {
     Value = startVal;
@@ -69,7 +84,7 @@ public class PetBar : MonoBehaviour {
       }
       else
       {
-        currentTimeInBounds = 0;
+        currentTimeInBounds = Mathf.Clamp(currentTimeInBounds - (timeDecay * Time.deltaTime), 0, timeToComplete * 2);
       }
 
       if (currentTimeInBounds > timeToComplete)
@@ -79,6 +94,9 @@ public class PetBar : MonoBehaviour {
 
       // Decay bar value
       Value = Mathf.Clamp(Value - barDecay * Time.deltaTime, 0, 1);
+
+      float completePercent = currentTimeInBounds / timeToComplete;
+      fill.color = Color.Lerp(badColor, goodColor, completePercent);
     }
   }
 

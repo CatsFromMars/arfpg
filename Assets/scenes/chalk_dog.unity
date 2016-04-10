@@ -521,6 +521,9 @@ MonoBehaviour:
   timeToComplete: 5
   currentTimeInBounds: 0
   isActive: 1
+  timeDecay: 1
+  badColor: {r: 1, g: 0, b: 0, a: 1}
+  goodColor: {r: 0, g: 1, b: 0.17241383, a: 1}
 --- !u!1 &1061491440
 GameObject:
   m_ObjectHideFlags: 0
