@@ -111,7 +111,7 @@ public class Throwable : MonoBehaviour {
 
   void OnBecameInvisible()
   {
-	returning = true;
+	  returning = true;
     StartCoroutine("returnHome");
   }
 

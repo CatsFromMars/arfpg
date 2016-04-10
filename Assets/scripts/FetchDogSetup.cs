@@ -39,6 +39,7 @@ public class FetchDogSetup : MonoBehaviour, GameWinHandler {
 
     if (buttonThrower.timesThrown >= 3)
     {
+      buttonThrower.enabled = false;
       textComponent.setText("I'm tired. Give pets?");
       pbar.isActive = true;
     }
